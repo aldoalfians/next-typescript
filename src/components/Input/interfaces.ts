@@ -1,4 +1,5 @@
 import type { InputHTMLAttributes } from 'react'
+import { FieldErrors, UseFormRegister, ValidationRule } from 'react-hook-form'
 
 export interface InputProps {
   name: InputHTMLAttributes<HTMLInputElement>['name']
@@ -6,4 +7,8 @@ export interface InputProps {
   label: string
   placeholder: string
   className?: string
+  register: UseFormRegister<any>
+  errors?: FieldErrors
+  required?: string | ValidationRule<boolean>
+  pattern?: ValidationRule<RegExp>
 }

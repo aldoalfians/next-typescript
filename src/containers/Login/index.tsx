@@ -2,9 +2,14 @@ import Layout from 'components/Layout'
 import Button from 'components/Button'
 import Input from 'components/Input'
 
+import { useComponentLogic } from './hooks'
+import { REG_EXP } from 'constants/regexp'
+
 import styles from './Login.module.css'
 
 const Login = () => {
+  const { register, handleSubmit, onSubmit, errors } = useComponentLogic()
+
   return (
     <Layout noFooter>
       <section className={styles.sectionLogin}>
@@ -21,8 +26,18 @@ const Login = () => {
               Daftar Disini
             </a>
           </div>
-          <form className='flex flex-col mt-8'>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='flex flex-col mt-8'
+          >
             <Input
+              register={register}
+              errors={errors}
+              required={{ value: true, message: 'Email tidak boleh kosong' }}
+              pattern={{
+                value: REG_EXP.email,
+                message: 'Gunakan format email yang benar',
+              }}
               label='Email'
               placeholder='Masukan alamat email'
               name='email'
@@ -30,6 +45,9 @@ const Login = () => {
               className='mb-6'
             />
             <Input
+              register={register}
+              errors={errors}
+              required={{ value: true, message: 'Password tidak boleh kosong' }}
               label='Password'
               placeholder='Masukan password'
               name='password'
@@ -43,8 +61,16 @@ const Login = () => {
               Lupa password?
             </a>
 
-            <Button>Masuk</Button>
+            <Button type='submit' fullWidth>
+              Masuk
+            </Button>
           </form>
+
+          <p className='text-heading-5 text-gray-70 my-8'>Atau masuk dengan</p>
+          <Button variant='google' className='mb-4'>
+            Masuk dengan Google
+          </Button>
+          <Button variant='facebook'>Masuk dengan Facebook</Button>
         </div>
       </section>
     </Layout>

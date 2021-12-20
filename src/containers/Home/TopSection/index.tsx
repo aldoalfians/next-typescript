@@ -18,7 +18,7 @@ const TopSection = () => {
               kamu akan mendapatkan pelayanan terbaik untuk wisata liburanmu
               bersamaku.
             </p>
-            <Button>Lihat Paket</Button>
+            <Button className='w-[190px]'>Lihat Paket</Button>
           </div>
           <div className='flex gap-40 mx-auto'>
             <InfoItem label='+30' subLabel='Negara' />
